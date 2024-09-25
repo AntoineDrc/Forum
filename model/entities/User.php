@@ -11,6 +11,10 @@ final class User extends Entity{
 
     private $id;
     private $userName;
+    private $password;
+    private $mail;
+    private $registrationDate;
+    private $role;
 
     public function __construct($data){         
         $this->hydrate($data);        
@@ -31,6 +35,54 @@ final class User extends Entity{
 
     public function setuserName($userName){
         $this->userName = $userName;
+
+        return $this;
+    }
+
+    public function getPassword()
+    {
+        return $this->password;
+    }
+
+    public function setPassword($password)
+    {
+        $this->password = $password;
+
+        return $this;
+    }
+
+    public function getMail()
+    {
+        return $this->mail;
+    }
+
+    public function setMail($mail)
+    {
+        $this->mail = $mail;
+
+        return $this;
+    }
+
+    public function getRegistrationDate()
+    {
+        return $this->registrationDate;
+    }
+
+    public function setRegistrationDate($registrationDate)
+    {
+        $this->registrationDate = $registrationDate;
+
+        return $this;
+    }
+
+    public function getRole()
+    {
+        return $this->role;
+    }
+
+    public function setRole($role)
+    {
+        $this->role = $role;
 
         return $this;
     }
