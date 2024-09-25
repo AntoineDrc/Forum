@@ -16,35 +16,19 @@ final class User extends Entity{
         $this->hydrate($data);        
     }
 
-    /**
-     * Get the value of id
-     */ 
     public function getId(){
         return $this->id;
     }
 
-    /**
-     * Set the value of id
-     *
-     * @return  self
-     */ 
     public function setId($id){
         $this->id = $id;
         return $this;
     }
 
-    /**
-     * Get the value of nickName
-     */ 
     public function getNickName(){
         return $this->nickName;
     }
 
-    /**
-     * Set the value of nickName
-     *
-     * @return  self
-     */ 
     public function setNickName($nickName){
         $this->nickName = $nickName;
 
