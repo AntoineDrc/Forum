@@ -10,9 +10,11 @@ $posts = $result["data"]["posts"];
 
 <?php 
 
+echo $topic->getTitle() . "<br><br>";
+
 foreach ($posts as $post)
 {
-    echo $topic->getTitle() . $topic->getUser() . $post->getContent();
+    echo $topic->getUser() . " " . $post->getCreationDate() . "<br>" . $post->getContent();
 }
 
 ?>
