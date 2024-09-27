@@ -14,7 +14,13 @@ echo $topic->getTitle() . "<br><br>";
 
 foreach ($posts as $post)
 {
-    echo $topic->getUser() . " " . $post->getCreationDate() . "<br>" . $post->getContent();
+    echo $post->getUser() . " " . $post->getCreationDate() . "<br>" . $post->getContent();
 }
 
 ?>
+
+<form action="index.php?ctrl=forum&action=addPost&id=<?= $topic->getId() ?>" method="post">
+
+    <textarea name="content" id="txtarea" cols="100" rows="5" placeholder="Votre texte ici..."></textarea>
+    <input type="submit" value="Envoyer">
+</form>

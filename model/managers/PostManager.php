@@ -34,6 +34,16 @@ class PostManager extends Manager
         );
     }
 
-    
+    // Méthode pour ajouter un post à un topic
+    public function add($data)
+    {
+        $sql = 
+            "
+            INSERT INTO post (content, user_id, topic_id, creationDate)
+            VALUE (:content, :topic_id, :user_id, :creationDate)
+            ";
+
+        DAO::insert($sql, $data);
+    }
 }
 ?>

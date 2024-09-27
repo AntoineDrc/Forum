@@ -64,4 +64,30 @@ class ForumController extends AbstractController implements ControllerInterface{
             ]
         ];
     }
+
+    // Méthode pour récupèrer les données du formulaire pour poster un message
+    public function addPost()
+    {
+        $content = filter_input(INPUT_POST,"content", FILTER_SANITIZE_FULL_SPECIAL_CHARS) ?? null;
+        $topicId = filter_input(INPUT_GET,"id", FILTER_SANITIZE_NUMBER_INT) ?? null;
+
+        if ($content && $topicId)
+        {
+            $userId = 1; // Utilisateur temporaire
+
+            $postManager = new PostManager();
+            $postManager->add
+            ([
+                'content' => $content,
+                'topic_id' => $topicId,
+                'user_id' => $userId,
+                'creationDate' => date('Y-m-d H:i:s')
+            ]);
+
+            // Redirige vers la liste des posts du topic
+            $this->redirectTo("forum","listPostsByTopic", $topicId);
+        }
+
+
+    }
 }
