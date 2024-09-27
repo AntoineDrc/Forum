@@ -22,8 +22,8 @@ class PostManager extends Manager
             "
             SELECT * 
             FROM " . $this->tableName . "
-            JOIN topic ON topic.id_topic = post.topic_id
-            WHERE post.topic_id = :id
+            WHERE topic_id = :id
+            ORDER BY creationDate ASC
             ";
 
         // la requête renvoie plusieurs enregistrements --> getMultipleResults
