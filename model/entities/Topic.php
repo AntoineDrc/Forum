@@ -47,6 +47,43 @@ final class Topic extends Entity{
         return $this;
     }
 
+    
+    public function getCategory()
+    {
+        return $this->category;
+    }
+    
+    public function setCategory($category)
+    {
+        $this->category = $category;
+        
+        return $this;
+    }
+    
+    public function getCreationDate()
+    {
+        return $this->creationDate;
+    }
+    
+    public function setCreationDate($creationDate)
+    {
+        $this->creationDate = $creationDate;
+        
+        return $this;
+    }
+    
+    public function getClosed()
+    {
+        return $this->closed;
+    }
+    
+    public function setClosed($closed)
+    {
+        $this->closed = $closed;
+        
+        return $this;
+    }
+
     public function __toString(){
         return $this->title;
     }
