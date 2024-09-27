@@ -12,7 +12,7 @@ $posts = $result["data"]["posts"];
 
 foreach ($posts as $post)
 {
-    echo $post->getContent();
+    echo $topic->getTitle() . $topic->getUser() . $post->getContent();
 }
 
 ?>
