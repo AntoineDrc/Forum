@@ -33,5 +33,7 @@ class PostManager extends Manager
             $this->className
         );
     }
+
+    
 }
 ?>
