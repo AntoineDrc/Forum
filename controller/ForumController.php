@@ -65,12 +65,12 @@ class ForumController extends AbstractController implements ControllerInterface{
         ];
     }
 
-    // Méthode pour récupèrer les données du formulaire pour poster un message
+    // Méthode qui récupère les données du formulaire dans "listPosts" afin d'ajouter un nouveau poste
     public function addPost()
     {
         $content = filter_input(INPUT_POST,"content", FILTER_SANITIZE_FULL_SPECIAL_CHARS) ?? null;
         $topicId = filter_input(INPUT_GET,"id", FILTER_SANITIZE_NUMBER_INT) ?? null;
-        var_dump($_POST);
+
         if ($content && $topicId)
         {
             $userId = 2; // Utilisateur temporaire
@@ -87,7 +87,30 @@ class ForumController extends AbstractController implements ControllerInterface{
             // Redirige vers la liste des posts du topic
             $this->redirectTo("forum","listPostsByTopic", $topicId);
         }
+    }
 
+    // Méthode qui récupères les données du formulaire dans "listTopics" afin d'ajouter un nouveau topic
+    public function addTopic()
+    {
+        $title = filter_input(INPUT_POST,"title", FILTER_SANITIZE_FULL_SPECIAL_CHARS) ?? null;
+        $content = filter_input(INPUT_POST,"content", FILTER_SANITIZE_FULL_SPECIAL_CHARS) ?? null;
+        $categoryId = filter_input(INPUT_GET,"id", FILTER_SANITIZE_NUMBER_INT) ?? null;
 
+        if ($title && $content && $categoryId)
+        {
+            $userId = 2;
+
+            $topicManager = new TopicManager();
+            $topicManager->add
+            ([
+                'title' => $title,
+                'creationDate' => date('Y-m-d H:i:s'),
+                'user_id' => $userId,
+                'category_id' => $categoryId,
+            ]);
+
+            // Redirige vers la liste des topics par catégorie
+            $this->redirectTo("forum","listTopicsByCategory", $categoryId);
+        }
     }
 }
