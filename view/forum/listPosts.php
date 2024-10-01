@@ -19,7 +19,7 @@ foreach ($posts as $post)
 
 ?>
 
-<form action="index.php?ctrl=forum&action=addPost&id=<?= $topic->getId() ?>" method="POST">
+<form action="index.php?ctrl=post&action=addPost&id=<?= $topic->getId() ?>" method="POST">
 
     <textarea name="content" id="txtarea" cols="100" rows="5" placeholder="Votre texte ici..."></textarea>
     <input type="submit" value="Envoyer">
