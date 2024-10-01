@@ -36,7 +36,7 @@ class PostManager extends Manager
 
     // Méthode pour ajouter un post à un topic
     public function add($data)
-    { var_dump($data);
+    { 
         $sql = 
             "
             INSERT INTO post (content, creationDate, user_id, topic_id)

@@ -103,4 +103,10 @@ abstract class DAO{
             echo $e->getMessage();
         }
     }
+
+    // Méthode pour récupérer l'objet PDO
+    public static function getDb()
+    {
+        return self::$bdd;
+    }
 }

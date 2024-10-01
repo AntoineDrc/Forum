@@ -31,4 +31,19 @@ class TopicManager extends Manager{
             $this->className
         );
     }
+
+    // Méthode pour ajouter un topic
+    public function add($data)
+    {
+        $sql = 
+        "
+            INSERT INTO topic (title, creationDate, user_id, category_id)
+            VALUES (:title, :creationDate, :user_id, :category_id)
+        ";
+
+        DAO::insert($sql, $data);
+
+        // Récupère l'ID du dernier enregistrement
+        return DAO::getDb()->lastInsertId();
+    }
 }

@@ -1,7 +1,5 @@
 <?php
 
-use Model\Entities\Category;
-
     $category = $result["data"]['category']; 
     $topics = $result["data"]['topics']; 
 ?>
@@ -14,7 +12,7 @@ foreach($topics as $topic ){ ?>
 <?php }
 ?>
 
-<form action="index.php?ctrl=forum&action=addTopic&id=<?= $category->getId() ?>">
+<form action="index.php?ctrl=forum&action=addTopic&id=<?= $category->getId() ?>" method="POST">
     <input type="text" name="title" placeholder="Titre ici...">
     <textarea name="content" id="txtarea" cols="100" rows="3" placeholder="Votre texte ici..."></textarea>
     <input type="submit" value="add Topic">

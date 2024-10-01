@@ -101,12 +101,24 @@ class ForumController extends AbstractController implements ControllerInterface{
             $userId = 2;
 
             $topicManager = new TopicManager();
-            $topicManager->add
+
+            // Ajoute un nouveau topic
+            $topicId = $topicManager->add
             ([
                 'title' => $title,
                 'creationDate' => date('Y-m-d H:i:s'),
                 'user_id' => $userId,
-                'category_id' => $categoryId,
+                'category_id' => $categoryId
+            ]);
+
+            $postManager = new PostManager();
+            $postManager->add
+            ([
+                'content' => $content,
+                'creationDate' => date('Y-m-d H:i:s'),
+                'user_id' => $userId,
+                'topic_id' => $topicId
+
             ]);
 
             // Redirige vers la liste des topics par catégorie
