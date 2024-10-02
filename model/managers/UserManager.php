@@ -13,4 +13,30 @@ class UserManager extends Manager{
     public function __construct(){
         parent::connect();
     }
+
+    // Méthode pour vérifier un pseudo déja existant
+    public function userNameExist($userName)
+    {
+        $sql = 
+        "
+            SELECT *
+            FROM $this->tableName   
+            WHERE userName = :userName
+        ";
+
+        return DAO::select($sql, ['userName' => $userName], false);
+    }
+
+
+    // Méthode pour ajouter un utilisateur
+    public function addUser($data)
+    {
+        $sql = 
+        "
+            INSERT INTO user (userName, password, mail)
+            VALUES (:userName, :password, :mail)
+        ";
+
+        DAO::insert($sql, $data);
+    }
 }

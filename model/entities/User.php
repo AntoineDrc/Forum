@@ -29,11 +29,11 @@ final class User extends Entity{
         return $this;
     }
 
-    public function getuserName(){
+    public function getUserName(){
         return $this->userName;
     }
 
-    public function setuserName($userName){
+    public function setUserName($userName){
         $this->userName = $userName;
 
         return $this;
