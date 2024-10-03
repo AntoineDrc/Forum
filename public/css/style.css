@@ -7,3 +7,8 @@
 h1 {
     color: rgb(0, 122, 156);
 }
+
+nav {
+    display: flex;
+    flex-direction: row;
+}
