@@ -89,7 +89,7 @@ final class User extends Entity{
 
     public function hasRole($role)
     {
-        return $this === $role;
+        return $this->role === $role;
     }
 
     public function __toString() 
