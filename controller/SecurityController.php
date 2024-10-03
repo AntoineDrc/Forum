@@ -123,5 +123,15 @@ class SecurityController extends AbstractController{
         ];
     }
 
-    public function logout () {}
+    public function logout() 
+    {
+        // Vide toutes les données de la session
+        session_unset();
+
+        // Détruit la session
+        session_destroy();
+
+        // Redirige vers la page d'accueil
+        $this->redirectTo("forum", "index");
+    }
 }
