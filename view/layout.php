@@ -7,6 +7,9 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <script src="https://cdn.tiny.cloud/1/zg3mwraazn1b2ezih16je1tc6z7gwp5yd4pod06ae5uai8pa/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous" />
+        <link rel="stylesheet" href="<?= PUBLIC_DIR ?>css/header.css">
+        <link rel="stylesheet" href="<?= PUBLIC_DIR ?>css/main.css">
+        <link rel="stylesheet" href="<?= PUBLIC_DIR ?>css/footer.css">
         <link rel="stylesheet" href="<?= PUBLIC_DIR ?>css/style.css">
         <title>FORUM</title>
     </head>
@@ -18,35 +21,41 @@
                 <h3 class="message" style="color: green"><?= App\Session::getFlash("success") ?></h3>
                 <header>
                     <nav>
-                        <div id="nav-left">
-                            <a href="index.php?ctrl=forum&action=index">Accueil</a>
+                        <div id="nav">
+                            <?php
+                                // si l'utilisateur est connecté 
+                                if(App\Session::getUser()){
+                                    ?>
+                                    <a href="index.php?ctrl=security&action=profile"><?= App\Session::getUser()?></a>
+                                    <a href="index.php?ctrl=forum&action=index">
+                                        <img src="public/img/logo1.png" alt="">
+                                    </a>
+                                    <a href="index.php?ctrl=security&action=logout">Log out</a>
+                                    <?php
+                                }
+                                else{
+                                    ?>
+                                    <a href="index.php?ctrl=security&action=register">Sign in</a>
+                                    <a href="index.php?ctrl=forum&action=index">
+                                        <img src="public/img/logo1.png" alt="">
+                                    </a>
+                                    <a href="index.php?ctrl=security&action=login">Log in</a>
+                                <?php
+                                }
+                            ?>
+                            <!-- <a href="index.php?ctrl=forum&action=index">Accueil</a> -->
                             <?php
                             // if(App\Session::isAdmin()){
                                 ?>
-                                <a href="index.php?ctrl=home&action=users">Voir la liste des gens</a>
+                                <!-- Commande à déplacer dans vue admin -->
+                                <!-- <a href="index.php?ctrl=home&action=users">Voir la liste des gens</a> -->
                             <!-- <?php
                             //  } 
                             ?> -->
-                        </div>
-                        <div id="nav-right">
-                        <?php
-                            // si l'utilisateur est connecté 
-                            if(App\Session::getUser()){
-                                ?>
-                                <a href="index.php?ctrl=security&action=profile"><span class="fas fa-user"></span>&nbsp;<?= App\Session::getUser()?></a>
-                                <a href="index.php?ctrl=security&action=logout">Déconnexion</a>
-                                <?php
-                            }
-                            else{
-                                ?>
-                                <a href="index.php?ctrl=security&action=login">Log in</a>
-                                <a href="index.php?ctrl=security&action=register">Sign in</a>
-                                <a href="index.php?ctrl=forum&action=index">Liste des catégories</a>
-                            <?php
-                            }
-                        ?>
+                        
                         </div>
                     </nav>
+                    
                 </header>
                 
                 <main id="forum">

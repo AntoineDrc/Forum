@@ -2,7 +2,7 @@
     $categories = $result["data"]['categories']; 
 ?>
 
-<h1>Liste des catégories</h1>
+<h1>DRAGON BALL | DRAGON BALL Z | DRAGON BALL GT | DRAGON BALL SUPER</h1>
 
 <?php
 foreach($categories as $category ){ ?>

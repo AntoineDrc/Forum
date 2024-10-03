@@ -1,0 +1,29 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    background-color: black;
+    padding: 0.3em;
+    margin-bottom: 1em;
+}
+
+#nav {
+    display: flex;
+    align-items: center;
+    gap: 7em;
+}
+
+nav a {
+    color: #FFA500;
+    text-decoration: none;
+}
+
+nav img {
+    width: 100px
+}
