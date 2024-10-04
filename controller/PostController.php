@@ -61,10 +61,12 @@ class PostController extends AbstractController implements ControllerInterface
             $topicStatus = $topicManager->getStatus($topicId);
 
             // Si le topic est clos, redirige avec message d'erreur
-            if ($topicStatus && $topicStatus === 1)
-            $_SESSION["error"] = "Le topic est clos, vous ne pouvez pas ajouter de nouveaux post";
-            header("Location: index.php?ctrl=forum&action=index");
-            exit();
+            if ($topicStatus && $topicStatus['closed'] === 1)
+            {
+                $_SESSION["error"] = "Le topic est clos, vous ne pouvez pas ajouter de nouveaux post";
+                header("Location: index.php?ctrl=forum&action=index");
+                exit();
+            }
         }
 
         if ($content)
