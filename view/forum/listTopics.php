@@ -20,7 +20,7 @@ foreach($topics as $topic )
                 <span class="user"><?= $topic->getUser()?></span>
             </div>
             <div class="topic-date">
-                <?= $topic->getCreationDate() ?>
+                <?= $topic->getFormattedCreationDate() ?>
             </div>
             <div class="topic-statut">
                 <?php 

@@ -67,8 +67,15 @@ final class Topic extends Entity{
     
     public function setCreationDate($creationDate)
     {
-        $this->creationDate = $creationDate;
-        
+        // Vérifie si la date est une chaîne de caractères 
+        if (is_string($creationDate)) {
+            // Convertit en objet DateTime si la date est au format chaîne
+            $this->creationDate = new \DateTime($creationDate);
+        } elseif ($creationDate instanceof \DateTime) {
+            // Si déjà un objet DateTime, on l'assigne directement
+            $this->creationDate = $creationDate;
+        }
+
         return $this;
     }
     
@@ -86,5 +93,16 @@ final class Topic extends Entity{
 
     public function __toString(){
         return $this->title;
+    }
+
+    // Méthode pour récupérer la date formatée 
+    public function getFormattedCreationDate()
+    {
+        if ($this->creationDate instanceof \DateTime) {
+            // Format personnalisé : 'd F Y at H:i'
+            return $this->creationDate->format('d F Y \a\t H:i');
+        }
+
+        return null; // Si creationDate n'est pas défini ou incorrect
     }
 }

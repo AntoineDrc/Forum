@@ -16,7 +16,7 @@ foreach ($posts as $post) : ?>
     <div class="post-container">
         <div class="post-header">
             <span class="post-user"><?= $post->getUser() ?></span>
-            <span class="post-date"><?= $post->getCreationDate() ?></span>
+            <span class="post-date"><?= $post->getFormattedCreationDate() ?></span>
         </div>
         <div class="post-content">
             <p><?= $post->getContent() ?></p>
