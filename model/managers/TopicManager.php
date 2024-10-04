@@ -46,4 +46,18 @@ class TopicManager extends Manager{
         // Récupère l'ID du dernier enregistrement
         return DAO::getDb()->lastInsertId();
     }
+
+    // Vérifie si un topic exist
+    public function topicExist($id)
+    {
+        $sql = 
+        "
+            SELECT *
+            FROM topic
+            WHERE id_topic = :id
+        ";
+
+        $result = DAO::select($sql, ['id'=>$id], false);
+        return $result;
+    }
 }

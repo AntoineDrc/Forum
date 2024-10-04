@@ -15,6 +15,18 @@ class TopicController extends AbstractController implements ControllerInterface
     {
 
         $topicManager = new TopicManager();
+
+        // Récupère l'Id du topic
+        $topicId = $topicManager->topicExist($id);
+
+        // Retourne une erreur et redirige à l'acceuil si le topic n'existe pas 
+        if (!$topicId)
+        {
+            $_SESSION['error'] = "Le topic demandé n'existe pas";
+            header("Location: index.php?ctrl=forum&action=index");
+            exit();
+        }
+
         $categoryManager = new CategoryManager();
         $category = $categoryManager->findOneById($id);
         $topics = $topicManager->findTopicsByCategory($id);
@@ -32,13 +44,22 @@ class TopicController extends AbstractController implements ControllerInterface
     // Méthode qui récupères les données du formulaire dans "listTopics" afin d'ajouter un nouveau topic
     public function addTopic()
     {
+        $user = Session::getUser();
+
+        if (!$user)
+        {
+            $_SESSION['error'] = "Vous devez être connecté pour ajouter un topic";
+            header("Location: index.php?ctrl=security&action=login");
+            exit();
+        }
+
         $title = filter_input(INPUT_POST,"title", FILTER_SANITIZE_FULL_SPECIAL_CHARS) ?? null;
         $content = filter_input(INPUT_POST,"content", FILTER_SANITIZE_FULL_SPECIAL_CHARS) ?? null;
         $categoryId = filter_input(INPUT_GET,"id", FILTER_SANITIZE_NUMBER_INT) ?? null;
 
         if ($title && $content && $categoryId)
         {
-            $userId = 2;
+            $userId = $user->getId();
 
             $topicManager = new TopicManager();
 

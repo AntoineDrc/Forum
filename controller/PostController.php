@@ -16,6 +16,14 @@ class PostController extends AbstractController implements ControllerInterface
         $postManager = new PostManager();
         $topicManager = new TopicManager();
         $topic = $topicManager->findOneById($id);
+
+        // Redirection en cas d'erreur
+        if (!$topic)
+        {
+            $_SESSION['error'] = "Le topic demandé n'éxiste pas";
+            header("Location: index.php?ctrl=forum&action=index");
+            exit();
+        }
         $posts = $postManager->findPostsByTopic($id);
 
         return
@@ -33,12 +41,22 @@ class PostController extends AbstractController implements ControllerInterface
     // Méthode qui récupère les données du formulaire dans "listPosts" afin d'ajouter un nouveau poste
     public function addPost()
     {
+
+        $user = Session::getUser();
+
+        if (!$user)
+        {
+            $_SESSION["error"] = "Vous devez être connecté pour poster";
+            header("Location: index.php?ctrl=security&action=login");
+            exit();
+        }
+
         $content = filter_input(INPUT_POST,"content", FILTER_SANITIZE_FULL_SPECIAL_CHARS) ?? null;
         $topicId = filter_input(INPUT_GET,"id", FILTER_SANITIZE_NUMBER_INT) ?? null;
 
         if ($content && $topicId)
         {
-            $userId = 2; // Utilisateur temporaire
+            $userId = $user->getId(); 
 
             $postManager = new PostManager();
             $postManager->add
