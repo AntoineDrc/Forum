@@ -14,21 +14,18 @@ class TopicController extends AbstractController implements ControllerInterface
     public function listTopicsByCategory($id) 
     {
 
-        $topicManager = new TopicManager();
-
-        // Récupère l'Id du topic
-        $topicId = $topicManager->topicExist($id);
-
-        // Retourne une erreur et redirige à l'acceuil si le topic n'existe pas 
-        if (!$topicId)
+        $categoryManager = new CategoryManager();
+        $category = $categoryManager->findOneById($id);
+        
+        // Retourne une erreur et redirige à l'accueil si la catégorie n'existe pas 
+        if (!$category)
         {
-            $_SESSION['error'] = "Le topic demandé n'existe pas";
+            $_SESSION['error'] = "La catégorie demandé n'existe pas";
             header("Location: index.php?ctrl=forum&action=index");
             exit();
         }
-
-        $categoryManager = new CategoryManager();
-        $category = $categoryManager->findOneById($id);
+        
+        $topicManager = new TopicManager();
         $topics = $topicManager->findTopicsByCategory($id);
 
         return [
