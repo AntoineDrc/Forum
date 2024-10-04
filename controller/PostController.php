@@ -54,7 +54,20 @@ class PostController extends AbstractController implements ControllerInterface
         $content = filter_input(INPUT_POST,"content", FILTER_SANITIZE_FULL_SPECIAL_CHARS) ?? null;
         $topicId = filter_input(INPUT_GET,"id", FILTER_SANITIZE_NUMBER_INT) ?? null;
 
-        if ($content && $topicId)
+        
+        if ($topicId)
+        {
+            $topicManager = new TopicManager();
+            $topicStatus = $topicManager->getStatus($topicId);
+
+            // Si le topic est clos, redirige avec message d'erreur
+            if ($topicStatus && $topicStatus === 1)
+            $_SESSION["error"] = "Le topic est clos, vous ne pouvez pas ajouter de nouveaux post";
+            header("Location: index.php?ctrl=forum&action=index");
+            exit();
+        }
+
+        if ($content)
         {
             $userId = $user->getId(); 
 

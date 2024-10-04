@@ -60,4 +60,30 @@ class TopicManager extends Manager{
         $result = DAO::select($sql, ['id'=>$id], false);
         return $result;
     }
+
+    // Méthode pour mettre à jour le status d'un topic
+    public function updateTopicStatus($id, $status)
+    {
+        $sql = 
+        "
+            UPDATE topic
+            SET closed = :status
+            WHERE id_topic = :id
+        ";
+
+        DAO::update($sql, ['status' => $status, 'id' => $id]);
+    }
+
+    // Méthode pour obetnir le status d'un topic specifique
+    public function getStatus($id)
+    {
+        $sql = 
+        "
+            SELECT closed
+            FROM topic
+            WHERE id_topic = :id
+        ";
+
+        return DAO::select($sql, ["id" => $id], false);
+    }
 }

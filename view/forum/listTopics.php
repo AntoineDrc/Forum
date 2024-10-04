@@ -4,11 +4,36 @@
     $topics = $result["data"]['topics']; 
 ?>
 
-<h1>Liste des topics</h1>
+<h1><?= $category->getName() ?></h1>
 
 <?php 
-foreach($topics as $topic ){ ?>
-    <p><a href="index.php?ctrl=post&action=listPostsByTopic&id=<?= $topic->getId() ?>"><?= $topic->getTitle() ?><br></a> start by <?= $topic->getUser() . " le " . $topic->getCreationDate() ?></p>
+foreach($topics as $topic )
+{ ?><div class="topics-container">
+        <div class="topic">
+            <div class="topic-title">
+                <a href="index.php?ctrl=post&action=listPostsByTopic&id=<?= $topic->getId() ?>"><?= $topic->getTitle() ?>
+            </div>
+            <div class="topic-user">
+                </a> start by <?= $topic->getUser()?>
+            </div>
+            <div class="topic-date">
+                <?= $topic->getCreationDate() ?>
+            </div>
+            <div class="topic-statut">
+                <?php 
+                if ($topic->getClosed()): ?>
+                <span class="lock">
+                    <img src="public/img/lock.png" alt="logo de cadenas">
+                </span>
+                <?php 
+                else: ?>
+                <a href="index.php?ctrl=topic&action=lockTopic&id=<?= $topic->getId() ?>">
+                    <img src="public/img/key.png" alt="logo de clés">
+                </a>
+                <?php endif; ?>
+            </div>
+        </div>
+    </div>
 <?php }
 ?>
 

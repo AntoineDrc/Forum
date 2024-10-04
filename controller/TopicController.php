@@ -86,5 +86,33 @@ class TopicController extends AbstractController implements ControllerInterface
             $this->redirectTo("topic","listTopicsByCategory", $categoryId);
         }
     }
+
+    // Méthode pour verrouiller un topic
+    public function lockTopic($id)
+    {
+        $topicManager = new TopicManager();
+        
+        // Récupère le topic à verrouiller
+        $topic = $topicManager->findOneById($id);
+
+        if ($topic)
+        {
+            // Change le status du topic (0 = ouvert : 1 = fermé)
+            $newStatus = $topic->getClosed() ? 0 : 1;
+
+            // Met à jour le status du topic
+            $topicManager->updateTopicStatus($id, $newStatus);
+
+            // Redirige vers la liste des topics
+            $this->redirectTo("topic", "listTopicsByCategory", $topic->getCategory()->getId());
+        }
+        else
+        {
+            $_SESSION['error'] = "Le topic demandé n'éxiste pas";
+            $this->redirectTo("forum", "index");
+        }
+
+
+    }
 }
 ?>
