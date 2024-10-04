@@ -18,11 +18,15 @@ foreach ($posts as $post) : ?>
             <span class="post-user"><?= $post->getUser() ?></span>
             <span class="post-date"><?= $post->getFormattedCreationDate() ?></span>
         </div>
-        <div class="post-content">
-            <p><?= $post->getContent() ?></p>
+        <div class="post-center">
+            <img src="public/img/Vegeta.jpg" alt="image Vegeta">
+            <div class="post-content">
+                <p><?= $post->getContent() ?></p>
+            </div>
         </div>
     </div>
-<?php endforeach ?>
+    <?php endforeach ?>
+    
 
 
 
