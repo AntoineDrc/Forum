@@ -11,6 +11,8 @@
         <link rel="stylesheet" href="<?= PUBLIC_DIR ?>css/main.css">
         <link rel="stylesheet" href="<?= PUBLIC_DIR ?>css/footer.css">
         <link rel="stylesheet" href="<?= PUBLIC_DIR ?>css/style.css">
+        <link rel="stylesheet" href="<?= PUBLIC_DIR ?>css/topic.css">
+        <link rel="stylesheet" href="<?= PUBLIC_DIR ?>css/post.css">
         <title>FORUM</title>
     </head>
     <body>
@@ -28,18 +30,23 @@
                                     ?>
                                     <a href="index.php?ctrl=security&action=profile"><?= App\Session::getUser()?></a>
                                     <a href="index.php?ctrl=forum&action=index">
-                                        <img src="public/img/logo1.png" alt="">
+                                        <img src="public/img/logo1.png" alt="logo site">
                                     </a>
                                     <a href="index.php?ctrl=security&action=logout">Log out</a>
                                     <?php
                                 }
                                 else{
                                     ?>
-                                    <a href="index.php?ctrl=security&action=register">Sign in</a>
+                                    <span class="sign">
+                                        <a href="index.php?ctrl=security&action=register">Sign in</a>
+                                    </span>
                                     <a href="index.php?ctrl=forum&action=index">
-                                        <img src="public/img/logo1.png" alt="">
+                                        <img src="public/img/logo1.png" alt="logo site">
                                     </a>
-                                    <a href="index.php?ctrl=security&action=login">Log in</a>
+                                    <span class="log">
+                                        <a href="index.php?ctrl=security&action=login">Log in</a>
+                                    </span>
+                                    
                                 <?php
                                 }
                             ?>
@@ -55,15 +62,37 @@
                         
                         </div>
                     </nav>
-                    
+                    <div class="goku">
+                        <img src="public/img/goku-removebg.png" alt="">
+                    </div>
                 </header>
-                
-                <main id="forum">
-                    <?= $page ?>
-                </main>
+                <div id="main-parent">
+                    <main id="forum">
+                        <div class="date-top">
+                            <?php $date = new DateTime(); ?>
+                            <?= $date->format('d F Y \à H\hi') ?>
+                        </div>
+                        <?= $page ?>
+                    </main>
+                </div>
             </div>
             <footer>
-                <p>&copy; <?= date_create("now")->format("Y") ?> - <a href="#">Règlement du forum</a> - <a href="#">Mentions légales</a></p>
+                <div class="date-bot">
+                    &copy; <?= date_create("now")->format("Y") ?> - 
+                </div>
+                <div class="footer-main">
+                    <div class="reglement">
+                        <a href="#">Règlement du forum</a>
+                    </div>
+                    <div class="logo-bot">
+                    <a href="index.php?ctrl=forum&action=index">
+                        <img src="public/img/logo1.png" alt="logo site">
+                    </a>
+                    </div>
+                    <div class="mentions">
+                        <a href="#">Mentions légales</a>
+                    </div>
+                </div>
             </footer>
         </div>
         <script

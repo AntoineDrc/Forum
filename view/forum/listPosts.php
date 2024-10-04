@@ -6,11 +6,11 @@ $posts = $result["data"]["posts"];
 
 ?>
 
-<h1>Liste des posts</h1>
+<div class="post-topic">
+    <h1><?= $topic->getTitle() ?></h1>
+</div>
 
 <?php 
-
-echo $topic->getTitle() . "<br><br>";
 
 foreach ($posts as $post) : ?>
     <div class="post-container">

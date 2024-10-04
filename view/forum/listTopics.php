@@ -3,8 +3,10 @@
     $category = $result["data"]['category']; 
     $topics = $result["data"]['topics']; 
 ?>
+<div class="topic-category">
+    <h1><?= $category->getName() ?></h1>
+</div>
 
-<h1><?= $category->getName() ?></h1>
 
 <?php 
 foreach($topics as $topic )
@@ -14,7 +16,8 @@ foreach($topics as $topic )
                 <a href="index.php?ctrl=post&action=listPostsByTopic&id=<?= $topic->getId() ?>"><?= $topic->getTitle() ?>
             </div>
             <div class="topic-user">
-                </a> start by <?= $topic->getUser()?>
+                </a><span class="start">start by</span>
+                <span class="user"><?= $topic->getUser()?></span>
             </div>
             <div class="topic-date">
                 <?= $topic->getCreationDate() ?>

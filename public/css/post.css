@@ -1,0 +1,11 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.post-topic h1{
+    text-transform: uppercase;
+    background: none;
+    text-shadow: 0px 0px 4px rgba(255, 255, 255, 1);
+}

@@ -64,7 +64,7 @@ class TopicController extends AbstractController implements ControllerInterface
             $topicId = $topicManager->add
             ([
                 'title' => $title,
-                'creationDate' => date('Y-m-d H:i:s'),
+                'creationDate' => date('Y-m-d H:i'),
                 'user_id' => $userId,
                 'category_id' => $categoryId
             ]);
@@ -73,7 +73,7 @@ class TopicController extends AbstractController implements ControllerInterface
             $postManager->add
             ([
                 'content' => $content,
-                'creationDate' => date('Y-m-d H:i:s'),
+                'creationDate' => date('Y-m-d H:i'),
                 'user_id' => $userId,
                 'topic_id' => $topicId
 

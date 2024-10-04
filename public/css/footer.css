@@ -3,3 +3,39 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+footer {
+    position: relative;
+    display: flex;
+    background-color: black;
+    justify-content: center;
+    align-items: center;
+    margin-top: 3em;
+}
+
+.footer-main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7em;
+    padding: 0.3em;
+}
+
+.footer-main a {
+    color: #ffa500;
+}
+
+.logo-bot img {
+    width: 120px;
+}
+
+.date {
+    position: absolute;
+    background-color: red;
+}
+
+.date-bot {
+    position: absolute;
+    left: 0.5em;
+    color: rgb(255, 255, 255);
+}

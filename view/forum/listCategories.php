@@ -6,7 +6,12 @@
 
 <?php
 foreach($categories as $category ){ ?>
-    <p><a href="index.php?ctrl=topic&action=listTopicsByCategory&id=<?= $category->getId() ?>"><?= $category->getName() ?></a></p>
+    <div class="categorys">
+        <div class="category">
+            <img src="public/img/Db1.JPG-removebg-preview.png" alt="">
+                <a href="index.php?ctrl=topic&action=listTopicsByCategory&id=<?= $category->getId() ?>"><?= $category->getName() ?></a>
+        </div>
+    </div>
 <?php }
 
 

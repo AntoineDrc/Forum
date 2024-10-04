@@ -4,11 +4,30 @@
     box-sizing: border-box;
 }
 
+#main-parent {
+    display: flex;
+    justify-content: center;
+}
+
+#forum {
+    display: flex;
+    flex-direction: column;
+}
+
+.date-top {
+    color: #c6c6c6;
+    background: none;
+    border-bottom: solid 1px black;
+    padding: 0.7em;
+    padding-left: 4em;
+}
+
 main {
     margin: 0 4em;
     padding: 2em;
-    border: 1px solid black;
+    border: 1px solid rgb(0, 0, 0);
     border-radius: 17px;
+    background-color: rgba(0, 0, 0, 0.445);
 }
 
  main a {
@@ -19,5 +38,42 @@ main {
 
 main h1 {
     color: white;
-    font-size: 1.41rem;
+    font-size: 1.7rem;
+    text-align: center;
+    width: fit-content;
+    background-color: black;
+    padding: 0.5em;
+    border-radius: 0.5em;
+    margin: 1.5em 0;
+}
+
+.goku {
+    display: flex;
+    justify-content: center;
+}
+
+.goku img {
+    height: 210px;
+}
+
+.categorys {
+    display: flex;
+    margin: 0 1.5em;
+    border-bottom: 1px solid black;
+    height: 4em;
+}
+
+.category {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    gap: 2em;
+}
+
+.category a {
+    font-size: 1.2em;
+}
+
+.category img {
+    height: 40px;
 }

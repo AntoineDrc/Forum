@@ -77,7 +77,7 @@ class PostController extends AbstractController implements ControllerInterface
             $postManager->add
             ([
                 'content' => $content,
-                'creationDate' => date('Y-m-d H:i:s'),
+                'creationDate' => date('Y-m-d H:i'),
                 'user_id' => $userId,
                 'topic_id' => $topicId
             ]);

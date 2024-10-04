@@ -25,5 +25,15 @@ nav a {
 }
 
 nav img {
-    width: 100px
+    width: 120px
+}
+
+.sign, .log {
+    transition: 0.6s ease;
+}
+
+.sign:hover, .log:hover {
+    text-shadow: 0px 0px 7px #ffa500;
+    text-decoration: underline;
+    color: #FFA500;
 }
