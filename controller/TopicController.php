@@ -87,6 +87,10 @@ class TopicController extends AbstractController implements ControllerInterface
     // Méthode pour verrouiller un topic
     public function lockTopic($id)
     {
+
+        // Récupère l'utilisateur connecté
+        $user = Session::getUser();
+
         $topicManager = new TopicManager();
         
         // Récupère le topic à verrouiller
@@ -94,22 +98,65 @@ class TopicController extends AbstractController implements ControllerInterface
 
         if ($topic)
         {
-            // Change le status du topic (0 = ouvert : 1 = fermé)
-            $newStatus = $topic->getClosed() ? 0 : 1;
-
-            // Met à jour le status du topic
-            $topicManager->updateTopicStatus($id, $newStatus);
-
-            // Redirige vers la liste des topics
-            $this->redirectTo("topic", "listTopicsByCategory", $topic->getCategory()->getId());
+            if (Session::isAdmin() || $user->getId() === $topic->getUser()->getId())
+            {
+                // Change le status du topic (0 = ouvert : 1 = fermé)
+                $newStatus = $topic->getClosed() ? 0 : 1;
+    
+                // Met à jour le status du topic
+                $topicManager->updateTopicStatus($id, $newStatus);
+    
+                // Redirige vers la liste des topics
+                $this->redirectTo("topic", "listTopicsByCategory", $topic->getCategory()->getId());
+            }
+            else
+            {
+                $_SESSION['error'] = "Vous n'avez pas l'autorisation de verrouiller ce topic";
+                $this->redirectTo("forum", "index");
+            }
         }
         else
         {
             $_SESSION['error'] = "Le topic demandé n'éxiste pas";
             $this->redirectTo("forum", "index");
         }
+    }
+    // Méthode pour unlock un topic
+    public function unlockTopic($id)
+    {
+        // Récupère l'utilisateur connecté
+        $user = Session::getUser();
 
+        $topicManager = new TopicManager();
 
+        // Récupère le topic à déverouiller
+        $topic = $topicManager->findOneById($id);
+
+        if ($topic)
+        {
+            // Vérifie que l'utilisateur est admin ou créateur du topic
+            if (Session::isAdmin() || $user->getId() === $topic->getUser()->getId())
+            {
+                $newStatus = 0; // 0 = ouvert, 1 = fermé
+
+                // Met à jour le statut du topic
+                $topicManager->updateTopicStatus($id, $newStatus);
+
+                // Redirige vers la liste des topics de la catégorie
+                $this->redirectTo("topic", "listTopicsByCategory", $topic->getCategory()->getId());
+            }
+            else 
+            {
+                $_SESSION['error'] = "Vous n'avez pas l'autorisation de déverouiller ce topic";
+                $this->redirectTo("forum", "index");
+            }
+        }
+        else 
+        {
+            // Si le topic n'existe pas, affiche un message d'erreur et redirige
+            $_SESSION['error'] = "Le topic demandé n'existe pas";
+            $this->redirectTo('forum', 'index');
+        }
     }
 }
 ?>

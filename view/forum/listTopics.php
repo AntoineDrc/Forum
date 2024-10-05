@@ -26,7 +26,9 @@ foreach($topics as $topic )
                 <?php 
                 if ($topic->getClosed()): ?>
                 <span class="lock">
-                    <img src="public/img/lock.png" alt="logo de cadenas">
+                    <a href="index.php?ctrl=topic&action=unlockTopic&id=<?= $topic->getId() ?>">
+                        <img src="public/img/lock.png" alt="logo de cadenas">
+                    </a>
                 </span>
                 <?php 
                 else: ?>
