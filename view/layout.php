@@ -51,16 +51,6 @@
                                 <?php
                                 }
                             ?>
-                            <!-- <a href="index.php?ctrl=forum&action=index">Accueil</a> -->
-                            <?php
-                            // if(App\Session::isAdmin()){
-                                ?>
-                                <!-- Commande à déplacer dans vue admin -->
-                                <!-- <a href="index.php?ctrl=home&action=users">Voir la liste des gens</a> -->
-                            <!-- <?php
-                            //  } 
-                            ?> -->
-                        
                         </div>
                     </nav>
                     <div class="goku">
@@ -70,7 +60,8 @@
                 <div id="main-parent">
                     <main id="forum">
                         <div class="date-top">
-                            <?php $date = new DateTime(); ?>
+                            <?php $date = new DateTime(); 
+                            $date->setTimezone(new DateTimeZone('Europe/Paris'));?>
                             <?= $date->format('d F Y \à H\hi') ?>
                         </div>
                         <?= $page ?>

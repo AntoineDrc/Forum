@@ -35,10 +35,12 @@
 }
 
 .post-date {
+    font-family: 'Maven Pro';
     color: #ffcf77;
 }
 
 .post-content p {
+    font-family: 'Maven Pro';
     color: white;
     padding: 1.1em;
     border-top: solid 1px black;
