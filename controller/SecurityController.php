@@ -134,4 +134,60 @@ class SecurityController extends AbstractController{
         // Redirige vers la page d'accueil
         $this->redirectTo("forum", "index");
     }
+
+    public function manageUsers(){
+        $this->restrictTo("admin");
+
+        $manager = new UserManager();
+        $users = $manager->findAll(['registrationDate', 'DESC']);
+
+        return [
+            "view" => VIEW_DIR."security/admin.php",
+            "meta_description" => "Liste des utilisateurs du forum",
+            "data" => [ 
+                "users" => $users 
+            ]
+        ];
+    }
+
+    // Métode pour bannir un utilisateur 
+    public function banUser($id)
+    {
+        $userManager = new UserManager();
+        $user = $userManager->findOneById($id);
+
+        if ($user)
+        {
+            $userManager->update($user, 1);
+
+            $_SESSION['success'] = "L'utilisateur à été banni";
+        }
+        else 
+        {
+            $_SESSION['error'] = "Utilisateur introuvable";
+        }
+
+        // Redirige vers la page admin 
+        $this->redirectTo("security", "manageUsers");
+    }
+
+    // Méthode pour débannir un utilisateur 
+    public function unBanUser($id)
+    {
+        $userManager = new UserManager();
+        $user = $userManager->findOneById($id);
+
+        if ($user)
+        {
+            $userManager->update($user, 0);
+
+            $_SESSION['success'] = "L'utilisateur à été débanni";
+        }
+        else 
+        {
+            $_SESSION['error'] = "Utilisateur introuvable";
+        }
+
+        $this->redirectTo("security", "manageUsers");
+    }
 }

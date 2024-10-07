@@ -50,6 +50,14 @@ class TopicController extends AbstractController implements ControllerInterface
             exit();
         }
 
+        // Vérifie si l'utilisateur est banni et si c'est le cas, envoie un message d'erreur et redirige vers la page d'accueil
+        if ($user->getIsbanned())
+        {
+            $_SESSION['error'] = "Vous êtes banni et ne pouvez pas créer de topic";
+            header("Location:index.php?ctrl=forum&action=index");
+            exit();
+        }
+
         $title = filter_input(INPUT_POST,"title", FILTER_SANITIZE_FULL_SPECIAL_CHARS) ?? null;
         $content = filter_input(INPUT_POST,"content", FILTER_SANITIZE_FULL_SPECIAL_CHARS) ?? null;
         $categoryId = filter_input(INPUT_GET,"id", FILTER_SANITIZE_NUMBER_INT) ?? null;

@@ -40,4 +40,17 @@ class UserManager extends Manager{
 
         DAO::insert($sql, $data);
     }
+
+    // Métode pour mettre à jour le statut "isBanned"
+    public function update($user, $isBanned)
+    {
+        $sql =
+        "
+            UPDATE user
+            SET isBanned = :isBanned
+            WHERE id_user = :id_user
+        ";
+
+        DAO::update($sql, ['isBanned' => $isBanned, 'id_user' => $user->getId()]);
+    }
 }

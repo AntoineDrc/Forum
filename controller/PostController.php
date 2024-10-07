@@ -54,6 +54,13 @@ class PostController extends AbstractController implements ControllerInterface
         $content = filter_input(INPUT_POST,"content", FILTER_SANITIZE_FULL_SPECIAL_CHARS) ?? null;
         $topicId = filter_input(INPUT_GET,"id", FILTER_SANITIZE_NUMBER_INT) ?? null;
 
+        // Vérifie si l'utilisateur est banni, et si c'est le cas, envoie un message d'erreur et redirige vers la page d'accueil
+        if ($user->getIsbanned())
+        {
+            $_SESSION['error'] = "Vous êtes banni et ne pouvez pas poster";
+            header("Location:index.php?ctrl=forum&action=index");
+            exit();
+        }
         
         if ($topicId)
         {

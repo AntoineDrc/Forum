@@ -28,14 +28,15 @@
                                 // si l'utilisateur est connecté 
                                 if(App\Session::getUser()){
                                     ?>
-                                    <a href="index.php?ctrl=security&action=profile"><?= App\Session::getUser()?></a>
+                                    <a href="index.php?ctrl=security&action=manageUsers"><?= App\Session::getUser()?></a>
                                     <a href="index.php?ctrl=forum&action=index">
                                         <img src="public/img/logo1.png" alt="logo site">
                                     </a>
                                     <a href="index.php?ctrl=security&action=logout">Log out</a>
                                     <?php
                                 }
-                                else{
+                                else
+                                {
                                     ?>
                                     <span class="sign">
                                         <a href="index.php?ctrl=security&action=register">Sign in</a>

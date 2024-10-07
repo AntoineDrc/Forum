@@ -51,10 +51,10 @@ final class Post extends Entity
     {
         // Vérifie si la date est une chaîne de caractères 
         if (is_string($creationDate)) {
-            // Convertit en objet DateTime si la date est au format chaîne
+            // Convertit en objet DateTime si la date est au format string
             $this->creationDate = new \DateTime($creationDate);
         } elseif ($creationDate instanceof \DateTime) {
-            // Si déjà un objet DateTime, on l'assigne directement
+            // Si un objet DateTime, on l'assigne directement
             $this->creationDate = $creationDate;
         }
 

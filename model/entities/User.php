@@ -16,6 +16,8 @@ final class User extends Entity{
     private $registrationDate;
     private $role;
 
+    private $isBanned;
+
     public function __construct($data){         
         $this->hydrate($data);        
     }
@@ -70,9 +72,14 @@ final class User extends Entity{
 
     public function setRegistrationDate($registrationDate)
     {
-        $this->registrationDate = $registrationDate;
-
-        return $this;
+        // Vérifie si la date est une chaîne de caractères 
+        if (is_string($registrationDate)) {
+            // Convertit en objet DateTime si la date est au format string
+            $this->registrationDate = new \DateTime($registrationDate);
+        } elseif ($registrationDate instanceof \DateTime) {
+            // Si un objet DateTime, on l'assigne directement
+            $this->registrationDate = $registrationDate;
+        }
     }
 
     public function getRole()
@@ -92,8 +99,33 @@ final class User extends Entity{
         return $this->role === $role;
     }
 
+    public function getIsBanned()
+    {
+        return $this->isBanned;
+    }
+
+    public function setIsBanned($isBanned)
+    {
+        $this->isBanned = $isBanned;
+
+        return $this;
+    }
+
+    
+    // Méthode pour récupérer la date formatée 
+    public function getFormattedRegistrationDate()
+    {
+        if ($this->registrationDate instanceof \DateTime) {
+            // Format personnalisé : 'd F Y at H:i'
+            return $this->registrationDate->format('d F Y \a\t H:i');
+        }
+
+        return null; // Si registrationDate n'est pas défini ou incorrect
+    }
+    
     public function __toString() 
     {
         return $this->userName ?? '';
     }
+
 }
