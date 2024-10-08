@@ -6,7 +6,7 @@ use App\Session;
     $topics = $result["data"]['topics']; 
 ?>
 <div class="topic-name">
-    <div class="topic-category">
+    <div class="h1-secondary">
         <h1><?= $category->getName() ?></h1>
     </div>
         <a href="#addTopic">
@@ -63,7 +63,7 @@ use App\Session;
                                 <?php 
                                 // Récupère l'ID user
                                 $user = Session::getUser();
-                                $topicOwner = $topic->getUser(); // Récupérer l'utilisateur du topic
+                                $topicOwner = $topic->getUser(); // Récupère l'utilisateur du topic
                                 if ($user && !$user->getIsBanned() && $topicOwner && ($user->getId() === $topicOwner->getId() || Session::isAdmin()))
                                 { ?>
                                     <?php if ($topic->getClosed()): ?>

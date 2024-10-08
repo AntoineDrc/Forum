@@ -38,10 +38,13 @@ foreach ($posts as $post) : ?>
 if ($user && !$user->getIsbanned() && !$topic->getClosed())
 { ?>
 <div class="addPost">
-    <form action="index.php?ctrl=post&action=addPost&id=<?= $topic->getId() ?>" method="POST">
-        <textarea name="content" id="txtarea" cols="100" rows="5" placeholder="Votre texte ici..."></textarea>
-        <input type="submit" value="Envoyer">
-    </form>
+    <div class="form-container">
+    <img src="public/img/avatar.png" alt="">
+        <form action="index.php?ctrl=post&action=addPost&id=<?= $topic->getId() ?>" method="POST">
+            <textarea name="content" id="txtarea" cols="100" rows="5" placeholder="Votre texte ici..."></textarea>
+            <input type="submit" value="Envoyer">
+        </form>
+    </div>
 </div>
 <?php } ?>
  

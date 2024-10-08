@@ -10,6 +10,16 @@ body {
     font-family: 'Krona One';
 }
 
+#wrapper {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+#mainpage {
+    flex: 1;
+}
+
 #main-parent {
     display: flex;
     justify-content: center;

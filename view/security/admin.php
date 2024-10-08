@@ -3,8 +3,9 @@
 $users = $result['data']['users'];
 ?>
 
-<h1>Gestion des utilisateurs</h1>
-
+<div class="h1-secondary">
+    <h1>Gestion des utilisateurs</h1>
+</div>
 <table>
     <tr>
         <th>Nom Utilisateur</th>

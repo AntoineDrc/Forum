@@ -3,6 +3,9 @@ $user = App\Session::getUser();
 ?>
 
 <div class="profile">
+    <div class="h1-secondary">
+        <h1>Profile de <?= $user->getUserName() ?></h1>
+    </div>
     <table>
         <thead>
             <tr>
@@ -14,7 +17,7 @@ $user = App\Session::getUser();
         </thead>
         <tbody>
             <tr>
-                <td><?= $user->getUserName() ?></td>
+                <td class="user"><?= $user->getUserName() ?></td>
                 <td><?= $user->getFormattedRegistrationDate() ?></td>
                 <td><?= $user->getIsBanned() ? "Banni" : "Utilisateur" ?></td>
                 <td>

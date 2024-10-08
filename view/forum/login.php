@@ -1,4 +1,6 @@
-<h1>Log in</h1>
+<div class="h1-secondary">
+    <h1>Log in</h1>
+</div>
 
 <?php 
 
