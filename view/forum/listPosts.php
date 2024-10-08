@@ -1,4 +1,6 @@
-<?php 
+<?php
+
+use App\Session;
 
 $topic = $result["data"]["topic"];
 $posts = $result["data"]["posts"];
@@ -28,10 +30,14 @@ foreach ($posts as $post) : ?>
     <?php endforeach ?>
     
 
-
-
-<form action="index.php?ctrl=post&action=addPost&id=<?= $topic->getId() ?>" method="POST">
-
-    <textarea name="content" id="txtarea" cols="100" rows="5" placeholder="Votre texte ici..."></textarea>
-    <input type="submit" value="Envoyer">
-</form>
+<?php $user = Session::getUser(); 
+if ($user && !$user->getIsbanned() && !$topic->getClosed())
+{ ?>
+<div class="addPost">
+    <form action="index.php?ctrl=post&action=addPost&id=<?= $topic->getId() ?>" method="POST">
+        <textarea name="content" id="txtarea" cols="100" rows="5" placeholder="Votre texte ici..."></textarea>
+        <input type="submit" value="Envoyer">
+    </form>
+</div>
+<?php } ?>
+ 

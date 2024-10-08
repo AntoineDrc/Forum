@@ -1,5 +1,7 @@
 <?php
 
+use App\Session;
+
     $category = $result["data"]['category']; 
     $topics = $result["data"]['topics']; 
 ?>
@@ -53,15 +55,21 @@
                         <!-- Status: Locked or Unlocked -->
                         <td>
                             <div class="topic-statut">
-                                <?php if ($topic->getClosed()): ?>
-                                    <a href="index.php?ctrl=topic&action=unlockTopic&id=<?= $topic->getId() ?>">
-                                        <img src="public/img/lock.png" alt="Locked">
-                                    </a>
-                                <?php else: ?>
-                                    <a href="index.php?ctrl=topic&action=lockTopic&id=<?= $topic->getId() ?>">
-                                        <img src="public/img/key.png" alt="Unlocked">
-                                    </a>
-                                <?php endif; ?>
+                                <?php 
+                                // Récupère l'ID user
+                                $user = Session::getUser();
+                                if ($user && !$user->getIsbanned() && $user->getId() === $topic->getUser()->getId() || Session::isAdmin())
+                                { ?>
+                                    <?php if ($topic->getClosed()): ?>
+                                        <a href="index.php?ctrl=topic&action=unlockTopic&id=<?= $topic->getId() ?>">
+                                            <img src="public/img/lock.png" alt="Locked">
+                                        </a>
+                                    <?php else: ?>
+                                        <a href="index.php?ctrl=topic&action=lockTopic&id=<?= $topic->getId() ?>">
+                                            <img src="public/img/key.png" alt="Unlocked">
+                                        </a>
+                                    <?php endif;
+                                } ?>
                             </div>
                         </td>
                     </tr>
@@ -70,8 +78,9 @@
         </table>
     </div>
     <?php 
-    ?>
-
+    $user = Session::getUser();
+    if ($user && !$user->getIsbanned())
+    { ?>
     <div class="addTopic">
         <div class="form-container">
             <img src="public/img/avatar.png" alt="">
@@ -82,4 +91,5 @@
             </form>
         </div>
     </div>
+    <?php } ?>
 </div>
