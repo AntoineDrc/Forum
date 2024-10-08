@@ -53,4 +53,16 @@ class UserManager extends Manager{
 
         DAO::update($sql, ['isBanned' => $isBanned, 'id_user' => $user->getId()]);
     }
+
+    // Supprimes un compte utilisateur 
+    public function deleteUser($id)
+    {
+        $sql = 
+        "
+            DELETE FROM user 
+            WHERE id_user = :id
+        ";
+
+        DAO::delete($sql, ["id" => $id]);
+    }
 }

@@ -86,4 +86,17 @@ class TopicManager extends Manager{
 
         return DAO::select($sql, ["id" => $id], false);
     }
+
+    // Rend anonyme les topics d'un utilisateut supprimé
+    public function anonimyzeTopicByUser($id)
+    {
+        $sql = 
+        "
+            UPDATE topic
+            SET user_id = NULL
+            WHERE user_id = :userId
+        ";
+
+        DAO::update($sql, ["id" => $id]);
+    }
 }

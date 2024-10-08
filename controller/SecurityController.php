@@ -6,6 +6,8 @@ use App\ControllerInterface;
 use Model\Managers\UserManager;
 use App\Session;
 use Model\Entities\User;
+use Model\Managers\PostManager;
+use Model\Managers\TopicManager;
 
 class SecurityController extends AbstractController{
     // contiendra les méthodes liées à l'authentification : register, login et logout
@@ -189,5 +191,58 @@ class SecurityController extends AbstractController{
         }
 
         $this->redirectTo("security", "manageUsers");
+    }
+
+    // Méthode pour afficher le profil d'un utilisateur
+    public function profile()
+    {
+        $user = Session::getUser(); 
+
+        if (!$user) 
+        {
+            // Si l'utilisateur n'est pas connecté, on le redirige vers la page de connexion
+            $this->redirectTo("security", "login");
+        }
+
+        return 
+        [
+            "view" => VIEW_DIR."security/profile.php", // Vue profil
+            "meta_description" => "Profil utilisateur",
+            "data" => [ 
+                "user" => $user 
+            ]
+        ];
+    }
+
+    // Méthode pour supprimer un compte 
+    public function deleteAcc()
+    {
+        // Récupère les données de l'utilisateur en cours
+        $user = Session::getUser();
+
+        if ($user)
+        {
+            $userManager = new UserManager;
+            $postManager = new PostManager;
+            $topicManager = new TopicManager;
+
+            // Anonymise les posts
+            $postManager->anonimyzePostsByUser($user->getId());
+
+            // Anonymise les topics
+            $topicManager->anonimyzeTopicByUser($user->getId());
+
+            // Supprime l'utilisateur
+            $userManager->deleteUser($user->getId());
+
+            // Détruit la session 
+            Session::setUser(null);
+
+            // Affiche un message de confirmation 
+            $_SESSION['error'] = "Votre compte à été supprimé avec succès";
+
+            // Redirige l'utilisateur 
+            $this->redirectTo("forum", "index");
+        }
     }
 }

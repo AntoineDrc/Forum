@@ -41,7 +41,12 @@ use App\Session;
                             </div>
                             <div class="topic-user">
                                 <span class="start">start by</span>
-                                <span class="user"><?= $topic->getUser() ?></span>
+                                <?php if ($topic->getUser()): ?>
+                                    <span class="user"><?= $topic->getUser() ?></span>
+                                <?php else: ?>
+                                    <span class="user">Anonyme</span>
+                                <?php endif; ?>
+                                
                             </div>
                         </td>
 
@@ -58,7 +63,8 @@ use App\Session;
                                 <?php 
                                 // Récupère l'ID user
                                 $user = Session::getUser();
-                                if ($user && !$user->getIsbanned() && $user->getId() === $topic->getUser()->getId() || Session::isAdmin())
+                                $topicOwner = $topic->getUser(); // Récupérer l'utilisateur du topic
+                                if ($user && !$user->getIsBanned() && $topicOwner && ($user->getId() === $topicOwner->getId() || Session::isAdmin()))
                                 { ?>
                                     <?php if ($topic->getClosed()): ?>
                                         <a href="index.php?ctrl=topic&action=unlockTopic&id=<?= $topic->getId() ?>">

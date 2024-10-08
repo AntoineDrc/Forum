@@ -45,6 +45,20 @@ class PostManager extends Manager
 
         DAO::insert($sql, $data);
     }
+
+    
+    // Rend anonyme les posts d'un utilisateut supprimé
+    public function anonimyzePostsByUser($id)
+    {
+        $sql = 
+        "
+            UPDATE post
+            SET user_id = NULL
+            WHERE user_id = :userId
+        ";
+
+        DAO::update($sql, ["id" => $id]);
+    }
 }
 
 

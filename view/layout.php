@@ -25,10 +25,17 @@
                     <nav>
                         <div id="nav">
                             <?php
-                                // si l'utilisateur est connecté 
-                                if(App\Session::getUser()){
-                                    ?>
-                                    <a href="index.php?ctrl=security&action=manageUsers"><?= App\Session::getUser()?></a>
+                                $user = App\Session::getUser();
+                                if($user)
+                                {
+                                    if (App\Session::isAdmin())
+                                    { ?>
+                                        <a href="index.php?ctrl=security&action=manageUsers"><?= $user ?></a>
+                                    <?php }
+                                    else 
+                                    { ?>
+                                        <a href="index.php?ctrl=security&action=profile"><?= $user ?></a>
+                                    <?php } ?>
                                     <a href="index.php?ctrl=forum&action=index">
                                         <img src="public/img/logo1.png" alt="logo site">
                                     </a>

@@ -17,7 +17,11 @@ $posts = $result["data"]["posts"];
 foreach ($posts as $post) : ?>
     <div class="post-container">
         <div class="post-header">
-            <span class="post-user"><?= $post->getUser() ?></span>
+            <?php if ($post->getUser()): ?>
+                <span class="post-user"><?= $post->getUser() ?></span>
+                <?php else: ?>
+                <span class="post-user">Anonyme</span>
+            <?php endif ?>
             <span class="post-date"><?= $post->getFormattedCreationDate() ?></span>
         </div>
         <div class="post-center">
