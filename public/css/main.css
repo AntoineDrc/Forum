@@ -95,3 +95,10 @@ main h1 {
     height: 40px;
 }
 
+form input[type="submit"] {
+    width: fit-content;
+    padding: 5px 8px;
+    border: none;
+    border-radius: 7px;
+    background: linear-gradient(to bottom, #d9d9d9, #ffffff);
+}

@@ -1,0 +1,13 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.admin td:nth-child(2) {
+    color: #c6c6c6;
+}
+
+.admin td:nth-child(3) {
+    color: #c6c6c6;
+}

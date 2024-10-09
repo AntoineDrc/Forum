@@ -3,3 +3,9 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+h5{
+    font-family: 'Maven Pro';
+    color: #FFCF77;
+    padding: 0.5em;
+}

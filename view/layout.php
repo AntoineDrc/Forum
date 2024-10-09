@@ -16,6 +16,8 @@
         <link rel="stylesheet" href="<?= PUBLIC_DIR ?>css/profile.css">
         <link rel="stylesheet" href="<?= PUBLIC_DIR ?>css/login.css">
         <link rel="stylesheet" href="<?= PUBLIC_DIR ?>css/register.css">
+        <link rel="stylesheet" href="<?= PUBLIC_DIR ?>css/admin.css">
+        <link rel="stylesheet" href="<?= PUBLIC_DIR ?>css/login.css">
         <title>FORUM</title>
     </head>
     <body>

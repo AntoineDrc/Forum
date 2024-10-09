@@ -23,21 +23,27 @@ if (isset($_SESSION['nameError']))
 }
 ?>
 
-<div class="registration-form">
-    <h5>Required information</h5>
-    <form action="index.php?ctrl=security&action=register" method="post">
-        <label for="userName">User name</label>
+<h5>Required information</h5>
+<div class="login-form">
+<form action="index.php?ctrl=security&action=register" method="post">
+    <div class="form-content">
+        <label for="userName">User name :</label>
         <input type="text" id="userName" name="userName" placeholder="Ton pseudo ici..." required>
-
-        <label for="mail">Mail</label>
-        <input type="mail" id="mail" name="mail" placeholder="Ton mail ici..." required>
-
-        <label for="password">Password</label>
+    </div>
+    <div class="form-content">
+        <label for="mail">Mail :</label>
+        <input type="email" id="mail" name="mail" placeholder="Ton mail ici..." required>
+    </div>
+    <div class="form-content">
+        <label for="password">Password :</label>
         <input type="password" id="password" name="password" placeholder="Ton password ici..." required>
-
-        <label for="confirmPassword">Confirm password</label>
+    </div>
+    <div class="form-content">
+        <label for="confirmPassword">Confirm password :</label>
         <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Ton password ici..." required>
-
+    </div>
+    <div class="form-submit">
         <input type="submit" value="Sign in">
-    </form>
+    </div>
+</form>
 </div>

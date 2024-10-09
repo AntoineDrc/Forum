@@ -37,7 +37,7 @@ foreach ($posts as $post) : ?>
 <?php $user = Session::getUser(); 
 if ($user && !$user->getIsbanned() && !$topic->getClosed())
 { ?>
-<div class="addPost">
+<div class="addForm">
     <div class="form-container">
     <img src="public/img/avatar.png" alt="">
         <form action="index.php?ctrl=post&action=addPost&id=<?= $topic->getId() ?>" method="POST">

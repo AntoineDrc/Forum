@@ -87,7 +87,7 @@ use App\Session;
     $user = Session::getUser();
     if ($user && !$user->getIsbanned())
     { ?>
-    <div class="addTopic">
+    <div class="addForm">
         <div class="form-container">
             <img src="public/img/avatar.png" alt="">
             <form action="index.php?ctrl=topic&action=addTopic&id=<?= $category->getId() ?>" id="addTopic" method="POST">

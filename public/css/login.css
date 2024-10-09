@@ -4,3 +4,43 @@
     box-sizing: border-box;
 }
 
+.login-form {
+    display: flex;
+    flex-direction: column;
+    background-color: #1b1b1b;
+    padding: 2em;
+}
+
+.login-form .form-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1em;
+    margin-bottom: 1em;
+}
+
+form label {
+    color: #c6c6c6;
+    width: 9em;
+}
+
+.login-form input[type="text"],
+.login-form input[type="password"], 
+.login-form input[type="email"] {
+    font-family: 'Maven Pro';
+    width: 250px; 
+    padding: 7px;
+    border: none;
+}
+
+.login-form input[type="text"]::placeholder, 
+.login-form textarea::placeholder {
+    font-family: 'Maven Pro';
+    color: white;
+    padding: 5px;
+}
+
+.login-form .form-submit {
+    display: flex;
+    justify-content: flex-end;
+}
