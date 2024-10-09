@@ -70,7 +70,7 @@ main h1 {
 }
 
 .goku img {
-    height: 210px;
+    height: 14em;
 }
 
 .categorys {
@@ -92,7 +92,7 @@ main h1 {
 }
 
 .category img {
-    height: 40px;
+    height: 3em;
 }
 
 form input[type="submit"] {
@@ -101,4 +101,32 @@ form input[type="submit"] {
     border: none;
     border-radius: 7px;
     background: linear-gradient(to bottom, #d9d9d9, #ffffff);
+}
+
+@media screen and (max-width: 958px) {
+    h1 {
+        font-size: 1.1em !important;
+    }
+
+    .goku img {
+        height: 12em;
+    }
+
+    #main-parent {
+        font-size: 0.7em;
+    }
+}
+
+@media screen and (max-width: 504px){
+    #main-parent {
+        font-size: 0.5em;
+    }
+
+    .goku img {
+        height: 10em;
+    }
+
+    button {
+        font-size: 1.1em;
+    }
 }

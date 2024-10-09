@@ -105,6 +105,7 @@ table td {
 .addForm input[type="text"], 
 .addForm textarea {
     font-family: 'Maven Pro';
+    width: 100%;
     background-color: black;
     color: white;
     border-radius: 10px;
@@ -128,4 +129,18 @@ table td {
 
 .addForm input[type="text"] {
     height: 3em;
+}
+
+@media screen and (max-width: 958px) {
+    .addForm input[type="text"], 
+    .addForm textarea {
+        font-size: 0.9em;
+        padding: 4.5px;
+    }
+}
+
+@media screen and (max-width: 504px){
+    .addForm input[type="submit"] {
+        font-size: 1.1em;
+    }
 }

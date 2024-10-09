@@ -28,7 +28,7 @@ form label {
 .login-form input[type="password"], 
 .login-form input[type="email"] {
     font-family: 'Maven Pro';
-    width: 250px; 
+    width: 20em; 
     padding: 7px;
     border: none;
 }
@@ -43,4 +43,21 @@ form label {
 .login-form .form-submit {
     display: flex;
     justify-content: flex-end;
+}
+
+@media screen and (max-width: 504px) {
+    .login-form input[type="text"],
+    .login-form input[type="password"], 
+    .login-form input[type="email"] {
+        font-size: 0.9em;
+    }
+
+    .login-form input[type="text"]::placeholder, 
+    .login-form textarea::placeholder {
+        font-size: 0.9em;
+    }
+
+    .login-form input[type="submit"] {
+        font-size: 1.1em;
+    }
 }

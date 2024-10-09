@@ -25,7 +25,7 @@ nav a {
 }
 
 nav img {
-    width: 120px
+    width: 7.5em;
 }
 
 .sign, .log {
@@ -36,4 +36,18 @@ nav img {
     text-shadow: 0px 0px 7px #ffa500;
     text-decoration: underline;
     color: #FFA500;
+}
+
+@media screen and (max-width: 958px) {
+    #nav {
+        gap: 4em;
+        font-size: 0.9em;
+    }
+}
+
+@media screen and (max-width: 504px){
+    #nav {
+        gap: 1.5em;
+        font-size: 0.7em;
+    }
 }
