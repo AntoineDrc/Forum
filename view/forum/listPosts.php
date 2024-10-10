@@ -23,9 +23,16 @@ foreach ($posts as $post) : ?>
                 <span class="post-user">Anonyme</span>
             <?php endif ?>
             <span class="post-date"><?= $post->getFormattedCreationDate() ?></span>
+            <?php if (Session::isAdmin()): ?>
+                <div class="post-action">
+                    <a href="index.php?ctrl=post&action=deletePost&id=<?= $post->getId() ?>" class="delete-post">
+                        <img class="trash" src="public/img/trash.png" alt="logo de corbeille">
+                    </a>
+                </div>
+                <?php endif; ?>
         </div>
         <div class="post-center">
-            <img src="public/img/Vegeta.jpg" alt="image Vegeta">
+            <!-- <img src="public/img/Vegeta.jpg" alt="image Vegeta"> -->
             <div class="post-content">
                 <p><?= $post->getContent() ?></p>
             </div>

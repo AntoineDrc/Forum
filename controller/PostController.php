@@ -93,5 +93,33 @@ class PostController extends AbstractController implements ControllerInterface
             $this->redirectTo("post","listPostsByTopic", $topicId);
         }
     }
+
+    // Méthode pour supprimer un post 
+    public function deletePost($id)
+    {
+        // Vérifie si l'utilistaeur est admin
+        if (Session::isAdmin())
+        {
+            $postManager = new PostManager();
+
+            // Récupère le post
+            $post = $postManager->findOneById($id);
+
+            if ($post)
+            {
+                $postManager->delete($id);
+
+                // Affiche un message
+                $_SESSION['success'] = "Le post a été supprimé avec succès";
+            }
+            else 
+            {
+                $_SESSION['error'] = "Le post n'existe pas";
+            }
+        }
+
+        // Redirige vers la page tu Topic
+        $this->redirectTo("post", "listPostsByTopic", $post->getTopic()->getId());
+    }
 }
 ?>
