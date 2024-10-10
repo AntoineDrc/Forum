@@ -51,3 +51,22 @@ nav img {
         font-size: 0.7em;
     }
 }
+
+@media screen and (max-width: 300px) {
+    .burger {
+        display: block;
+        color: white;
+    }
+
+    #nav {
+        display: none;
+    }
+
+    #nav.open {
+        display: flex;
+    }
+
+    .burger-icon {
+        cursor: pointer;
+    }
+}

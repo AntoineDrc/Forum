@@ -7,7 +7,7 @@ define('BASE_DIR', dirname(__FILE__).DS); // pour se simplifier la vie
 define('VIEW_DIR', BASE_DIR."view/");   //le chemin où se trouvent les vues
 define('PUBLIC_DIR', "public/");     //le chemin où se trouvent les fichiers publics (CSS, JS, IMG)
 
-define('DEFAULT_CTRL', 'Home');//nom du contrôleur par défaut
+define('DEFAULT_CTRL', 'Forum');//nom du contrôleur par défaut
 define('ADMIN_MAIL', "admin@gmail.com");//mail de l'administrateur
 
 require("app/Autoloader.php");

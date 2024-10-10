@@ -27,6 +27,9 @@
                 <h3 class="message" style="color: green"><?= App\Session::getFlash("success") ?></h3>
                 <header>
                     <nav>
+                        <div class="burger">
+                            <span class="burger-icon">&#9776;</span>
+                        </div>
                         <div id="nav">
                             <?php
                                 $user = App\Session::getUser();
