@@ -166,5 +166,21 @@ class TopicController extends AbstractController implements ControllerInterface
             $this->redirectTo('forum', 'index');
         }
     }
+
+    // Méthode pour supprimer un topic 
+    public function deleteTopic($id)
+    {
+        // Vérifie que l'utilisateur est admin
+        if (Session::isAdmin())
+        {
+            $topicManager = new TopicManager();
+
+            $topicManager->deleteTopic($id);
+
+            // Message de confirmation et redirection
+            $_SESSION['success'] = "Le topic à été supprimé avec succès";
+            $this->redirectTo("forum", "index");
+        }
+    }
 }
 ?>

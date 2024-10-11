@@ -50,3 +50,13 @@
 .post-center img {
     width: 60px;
 }
+
+.post-null {
+    color: #ffcf77;
+    padding: 0.5em;
+}
+
+.mess {
+    color: #ffcf77;
+    padding: 1em;
+}

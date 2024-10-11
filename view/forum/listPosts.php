@@ -14,6 +14,7 @@ $posts = $result["data"]["posts"];
 
 <?php 
 
+if ($posts):
 foreach ($posts as $post) : ?>
     <div class="post-container">
         <div class="post-header">
@@ -38,7 +39,12 @@ foreach ($posts as $post) : ?>
             </div>
         </div>
     </div>
-    <?php endforeach ?>
+    <?php endforeach; 
+else:?>
+<p class="post-null">Aucun post pour ce topic pour l'instant</p>
+<?php endif; ?>
+
+
     
 
 <?php $user = Session::getUser(); 
@@ -52,6 +58,19 @@ if ($user && !$user->getIsbanned() && !$topic->getClosed())
             <input type="submit" value="Envoyer">
         </form>
     </div>
-</div>
+    <?php } 
+elseif ($user && $topic->getClosed())
+{ ?>
+    <p class="mess">Ce topic est clos, vous ne pouvez pas ecrire de post</p>
+    <?php } 
+elseif ($user && $user->getIsBanned())
+{ ?>
+    <p class="mess">Vous êtes banni, vous ne pouvez pas ecrire de post</p>
+    <?php } 
+else 
+{?>
+    <p class="mess">Vous devez être connecté pour pouvoir poster</p>
 <?php } ?>
+
+</div>
  

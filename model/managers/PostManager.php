@@ -57,7 +57,7 @@ class PostManager extends Manager
             WHERE user_id = :userId
         ";
 
-        DAO::update($sql, ["id" => $id]);
+        DAO::update($sql, ["userId" => $id]);
     }
 }
 

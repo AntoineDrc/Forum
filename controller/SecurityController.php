@@ -239,7 +239,7 @@ class SecurityController extends AbstractController{
             Session::setUser(null);
 
             // Affiche un message de confirmation 
-            $_SESSION['error'] = "Votre compte à été supprimé avec succès";
+            $_SESSION['success'] = "Votre compte à été supprimé avec succès";
 
             // Redirige l'utilisateur 
             $this->redirectTo("forum", "index");

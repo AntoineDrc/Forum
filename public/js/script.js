@@ -13,15 +13,15 @@ document.addEventListener('DOMContentLoaded', function()
         nav.classList.toggle('open');
     });
 
-    // Selectionne l'image de corbeille
-    const trash = document.querySelectorAll('.delete-post');
+    // Selectionne le lien href de suppression de post
+    const trashP = document.querySelectorAll('.delete-post');
 
-    trash.forEach(function(link)
+    trashP.forEach(function(postLink)
     {
-        link.addEventListener('click', function(event)
+        postLink.addEventListener('click', function(event)
         {
-        // Affiche la confirmation
-        const confirmation = confirm("Êtes-vous sûr de vouloir supprimer ce post ?");
+            // Affiche la confirmation
+            const confirmation = confirm("Êtes-vous sûr de vouloir supprimer ce post ?");
 
             // Si annulé, empêche l'action 
             if (!confirmation)
@@ -29,5 +29,36 @@ document.addEventListener('DOMContentLoaded', function()
                 event.preventDefault();
             }
         });
+    });
+
+    // Selectionne le lien href de suppression de topic 
+    const trashT = document.querySelectorAll('.delete-topic')
+    
+    trashT.forEach(function(topicLink)
+    {
+        topicLink.addEventListener('click', function(event)
+            {
+                // Affiche message de confirmation 
+                const confirmation = confirm('Êtes-vous sûr de vouloir supprimer ce topic ?');
+
+                // Si annulé, empêche l'action 
+                if (!confirmation)
+                {
+                    event.preventDefault();
+                }
+            });
+    });
+
+    // Selection le lien href de suppression de compte 
+    const acc = document.querySelector('.delete-acc')
+
+    acc.addEventListener('click', function(accLink)
+    {
+        const confirmation = confirm('Êtes-vous sûr de vouloir supprimer votre compte');
+
+        if (!confirmation)
+        {
+            accLink.preventDefault();
+        }
     });
 });

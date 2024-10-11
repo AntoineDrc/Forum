@@ -21,7 +21,7 @@ $user = App\Session::getUser();
                 <td><?= $user->getFormattedRegistrationDate() ?></td>
                 <td><?= $user->getIsBanned() ? "Banni" : "Utilisateur" ?></td>
                 <td>
-                    <a href="index.php?ctrl=security&action=deleteAcc">
+                    <a href="index.php?ctrl=security&action=deleteAcc" class="delete-acc">
                         <button type="input">Supprimer</button>
                 </td>
                 </a>    

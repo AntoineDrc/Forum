@@ -97,6 +97,18 @@ class TopicManager extends Manager{
             WHERE user_id = :userId
         ";
 
-        DAO::update($sql, ["id" => $id]);
+        DAO::update($sql, ["userId" => $id]);
+    }
+
+    // Méthode pour supprimer un topic 
+    public function deleteTopic($id)
+    {
+        $sql = 
+        "
+            DELETE FROM topic
+            WHERE id_topic = :id
+        ";
+
+        DAO::delete($sql, ['id' => $id]);
     }
 }

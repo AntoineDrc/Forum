@@ -76,6 +76,12 @@ use App\Session;
                                         </a>
                                     <?php endif;
                                 } ?>
+                                <?php if (Session::isAdmin()): ?>
+                                    <a href="index.php?ctrl=topic&action=deleteTopic&id=<?= $topic->getId() ?>" class="delete-topic">
+                                        <img class="trash" src="public/img/trash.png" alt="logo de corbeille">
+                                    </a>
+                                    <?php endif; ?>
+                                    
                             </div>
                         </td>
                     </tr>
