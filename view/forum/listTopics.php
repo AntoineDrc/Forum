@@ -27,7 +27,8 @@ use App\Session;
             </thead>
             <tbody>
                 <?php 
-                foreach($topics as $topic ) { ?>
+                foreach($topics as $topic ) 
+                { ?>
                     <tr>
                         <td>
                             <img src="public/img/document.png" alt="">
@@ -76,7 +77,7 @@ use App\Session;
                                         </a>
                                     <?php endif;
                                 } ?>
-                                <?php if (Session::isAdmin() || $user->getId() === $topicOwner->getId()): ?>
+                                <?php if (Session::isAdmin() || ($user && $user->getId() === $topicOwner->getId())): ?>
                                     <a href="index.php?ctrl=topic&action=deleteTopic&id=<?= $topic->getId() ?>" class="delete-topic">
                                         <img class="trash" src="public/img/trash.png" alt="logo de corbeille">
                                     </a>
