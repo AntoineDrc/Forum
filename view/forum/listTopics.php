@@ -64,7 +64,7 @@ use App\Session;
                                 // Récupère l'ID user
                                 $user = Session::getUser();
                                 $topicOwner = $topic->getUser(); // Récupère l'utilisateur du topic
-                                if ($user && !$user->getIsBanned() && $topicOwner && ($user->getId() === $topicOwner->getId() || Session::isAdmin()))
+                                if ($user && !$user->getIsBanned() && (($topicOwner && $user->getId() === $topicOwner->getId()) || $topicOwner === null) || Session::isAdmin())
                                 { ?>
                                     <?php if ($topic->getClosed()): ?>
                                         <a href="index.php?ctrl=topic&action=unlockTopic&id=<?= $topic->getId() ?>">
@@ -76,7 +76,7 @@ use App\Session;
                                         </a>
                                     <?php endif;
                                 } ?>
-                                <?php if (Session::isAdmin()): ?>
+                                <?php if (Session::isAdmin() || $user->getId() === $topicOwner->getId()): ?>
                                     <a href="index.php?ctrl=topic&action=deleteTopic&id=<?= $topic->getId() ?>" class="delete-topic">
                                         <img class="trash" src="public/img/trash.png" alt="logo de corbeille">
                                     </a>

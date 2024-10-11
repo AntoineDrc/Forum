@@ -8,6 +8,7 @@ use App\ControllerInterface;
 use Model\Managers\CategoryManager;
 use Model\Managers\TopicManager;
 use model\Managers\PostManager;
+use Model\Managers\UserManager;
 
 class TopicController extends AbstractController implements ControllerInterface
 {
@@ -170,10 +171,13 @@ class TopicController extends AbstractController implements ControllerInterface
     // Méthode pour supprimer un topic 
     public function deleteTopic($id)
     {
-        // Vérifie que l'utilisateur est admin
-        if (Session::isAdmin())
+        $topicManager = new TopicManager();
+        $user = Session::getUser();
+        $topic = $topicManager->findOneById($id);
+
+        // Vérifie que l'utilisateur est admin ou créateur du topic
+        if (Session::isAdmin() || ($user->getId() === $topic->getUser()->getId()))
         {
-            $topicManager = new TopicManager();
 
             $topicManager->deleteTopic($id);
 
